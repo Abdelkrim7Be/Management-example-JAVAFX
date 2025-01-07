@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface EmployeDao extends Dao<Employe> {
     void create(Employe employe);
-    void save(Employe employe);
+    void update(Employe employe);
     Employe findByName(String name);
     List<Employe> findByDepartementId(int departementId);
     List<Employe> findByPosition(String position);

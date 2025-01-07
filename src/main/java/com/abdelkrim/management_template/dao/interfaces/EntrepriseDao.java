@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface EntrepriseDao extends Dao<Entreprise> {
     void create(Entreprise entreprise);
-    void save(Entreprise entreprise);
+    void update(Entreprise entreprise);
     Entreprise findByName(String name);
     List<Entreprise> findByKeyword(String keyword);
     List<Entreprise> findDepartmentsByEntrepriseId(int entrepriseId);

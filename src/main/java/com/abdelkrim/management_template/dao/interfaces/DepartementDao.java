@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface DepartementDao extends Dao<Departement> {
     void create(Departement departement);
-    void save(Departement departement);
+    void update(Departement departement);
     Departement findByName(String name);
     List<Departement> findByEntrepriseId(int entrepriseId);
     List<Departement> findEmployeesByDepartementId(int departementId);
