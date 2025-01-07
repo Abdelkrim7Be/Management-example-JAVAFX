@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.abdelkrim.management_template/com.abdelkrim.management_template.HelloApplication
+                                com.abdelkrim.management_template/com.abdelkrim.management_template.MainApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
