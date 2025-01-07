@@ -11,7 +11,6 @@ import java.util.List;
 public class EntrepriseDaoImpl implements EntrepriseDao {
     private final Connection connection;
 
-    // Constructor to initialize the connection
     public EntrepriseDaoImpl() {
         this.connection = SingletonConnexionDB.getConnexion();
     }
@@ -28,7 +27,7 @@ public class EntrepriseDaoImpl implements EntrepriseDao {
                 stmt.executeUpdate();
                 ResultSet generatedKeys = stmt.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    entreprise.setId(generatedKeys.getInt(1)); // Set the generated ID
+                    entreprise.setId(generatedKeys.getInt(1));
                 }
             }
         } else {
@@ -85,7 +84,7 @@ public class EntrepriseDaoImpl implements EntrepriseDao {
 
     @Override
     public void update(Entreprise entreprise) throws SQLException {
-        save(entreprise); // The update is handled by the save method itself (insert or update based on ID)
+        save(entreprise); //La méthode save gère elle-même la mise à jour
     }
 
     @Override
@@ -151,8 +150,7 @@ public class EntrepriseDaoImpl implements EntrepriseDao {
     public List<Entreprise> findDepartmentsByEntrepriseId(int entrepriseId) {
         List<Entreprise> entreprises = new ArrayList<>();
         try {
-            // Assuming there's a "Departments" table or related data, adjust the query accordingly.
-            String query = "SELECT * FROM Departments WHERE entreprise_id = ?";
+            String query = "SELECT * FROM Department WHERE entreprise_id = ?";
             try (PreparedStatement stmt = connection.prepareStatement(query)) {
                 stmt.setInt(1, entrepriseId);
                 ResultSet rs = stmt.executeQuery();
