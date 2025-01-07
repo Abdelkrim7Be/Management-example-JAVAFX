@@ -1,0 +1,41 @@
+CREATE TABLE IF NOT EXISTS Entreprise (
+    id INT AUTO_INCREMENT PRIMARY KEY,     -- Primary key with auto increment
+    nom VARCHAR(100) NOT NULL,             -- Company name
+    adresse VARCHAR(255) NOT NULL,         -- Company address
+    telephone VARCHAR(20) NOT NULL,        -- Company phone number
+    email VARCHAR(100) NOT NULL            -- Company email
+);
+
+CREATE TABLE IF NOT EXISTS Departement (
+    id INT AUTO_INCREMENT PRIMARY KEY,    -- Primary key with auto increment
+    nom VARCHAR(100) NOT NULL,             -- Department name
+    entreprise_id INT NOT NULL,            -- Foreign key linking to Entreprise
+    FOREIGN KEY (entreprise_id) REFERENCES Entreprise(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Employe (
+    id INT AUTO_INCREMENT PRIMARY KEY,    -- Primary key with auto increment
+    nom VARCHAR(100) NOT NULL,             -- Employee name
+    poste VARCHAR(100) NOT NULL,           -- Employee position
+    salaire DECIMAL(10, 2) NOT NULL,       -- Employee salary
+    departement_id INT NOT NULL,           -- Foreign key linking to Departement
+    FOREIGN KEY (departement_id) REFERENCES Departement(id) ON DELETE CASCADE
+);
+
+INSERT INTO Entreprise (nom, adresse, telephone, email) 
+VALUES 
+('Entreprise A', '123 Rue A, Ville X', '0123456789', 'contact@entrepriseA.com'),
+('Entreprise B', '456 Rue B, Ville Y', '0987654321', 'contact@entrepriseB.com');
+
+INSERT INTO Departement (nom, entreprise_id)
+VALUES
+('Département 1', 1),
+('Département 2', 1),
+('Département 3', 2);
+
+INSERT INTO Employe (nom, poste, salaire, departement_id)
+VALUES
+('John Doe', 'Manager', 5000.00, 1),
+('Jane Smith', 'Developer', 4000.00, 1),
+('Alice Johnson', 'HR', 3500.00, 2),
+('Bob Brown', 'Developer', 4500.00, 3);
