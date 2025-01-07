@@ -4,10 +4,9 @@ import com.abdelkrim.management_template.models.Departement;
 import java.util.List;
 
 public interface DepartementDao extends Dao<Departement> {
-    void create(Departement departement);
-    void update(Departement departement);
+    //L'EntrepriseDao étend désormais Dao<Entreprise>, ce qui lui permet d'hériter automatiquement
+    // des méthodes save(), findAll(), findById(), update() et delete().
     Departement findByName(String name);
     List<Departement> findByEntrepriseId(int entrepriseId);
     List<Departement> findEmployeesByDepartementId(int departementId);
-    void delete(int departementId);
 }

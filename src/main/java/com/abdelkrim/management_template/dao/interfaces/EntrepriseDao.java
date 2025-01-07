@@ -4,10 +4,9 @@ import com.abdelkrim.management_template.models.Entreprise;
 import java.util.List;
 
 public interface EntrepriseDao extends Dao<Entreprise> {
-    void create(Entreprise entreprise);
-    void update(Entreprise entreprise);
+    //L'EntrepriseDao étend désormais Dao<Entreprise>, ce qui lui permet d'hériter automatiquement
+    // des méthodes save(), findAll(), findById(), update() et delete().
     Entreprise findByName(String name);
     List<Entreprise> findByKeyword(String keyword);
     List<Entreprise> findDepartmentsByEntrepriseId(int entrepriseId);
-    void delete(int entrepriseId);
 }
