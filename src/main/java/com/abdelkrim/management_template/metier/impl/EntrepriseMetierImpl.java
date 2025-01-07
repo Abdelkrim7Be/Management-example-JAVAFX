@@ -75,6 +75,6 @@ public class EntrepriseMetierImpl implements IEntrepriseMetier {
             throw new Exception("Entreprise with ID " + entreprise.getId() + " not found");
         }
 
-        EntrepriseDao.update(entreprise); 
+        EntrepriseDao.update(entreprise);
     }
 }
