@@ -5,10 +5,54 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.abdelkrim.management_template.presentation.javafx.views.Departement"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+            fx:controller="com.abdelkrim.management_template.presentation.javafx.controllers.DepartementController"
+            prefHeight="600.0" prefWidth="800.0">
+    <top>
+        <VBox alignment="CENTER" spacing="10.0" style="-fx-padding: 20px 0 0 0;">
+            <Label text="Gestion des Départements" textFill="black" style="-fx-padding: 10px; -fx-margin-top: 20px;">
+                <font>
+                    <Font name="Arial Italic" size="24.0"/>
+                </font>
+            </Label>
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="20.0" style="-fx-padding: 20px;">
+            <TableView fx:id="departementTable" prefHeight="400.0" maxWidth="400.0">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="100.0">
+                        <style>
+                            <String fx:value="-fx-font-weight: bold;"/>
+                        </style>
+                    </TableColumn>
+                    <TableColumn fx:id="colNom" text="Nom" prefWidth="150.0">
+                        <style>
+                            <String fx:value="-fx-font-weight: bold;"/>
+                        </style>
+                    </TableColumn>
+                    <TableColumn fx:id="colEntreprise" text="Entreprise" prefWidth="150.0">
+                        <style>
+                            <String fx:value="-fx-font-weight: bold;"/>
+                        </style>
+                    </TableColumn>
+                </columns>
+            </TableView>
+            <HBox alignment="CENTER" spacing="10.0">
+                <TextField fx:id="txtNom" promptText="Nom"/>
+                <ComboBox fx:id="comboEntreprise" promptText="Entreprise"/>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+                <Button fx:id="btnAdd" text="Ajouter" onAction="#handleAddDepartement" style="-fx-background-color: black; -fx-text-fill: white;"/>
+                <Button fx:id="btnSave" text="Sauvegarder" onAction="#handleUpdateDepartement" style="-fx-background-color: black; -fx-text-fill: white;"/>
+                <Button fx:id="btnUpdate" text="Modifier" onAction="#handleUpdateDepartement" style="-fx-background-color: black; -fx-text-fill: white;"/>
+                <Button fx:id="btnDelete" text="Supprimer" onAction="#handleDeleteDepartement" style="-fx-background-color: black; -fx-text-fill: white;"/>
+                <Button fx:id="btnSelect" text="Sélectionner" onAction="#handleSelectDepartement" style="-fx-background-color: black; -fx-text-fill: white;"/>
+            </HBox>
+            <Label fx:id="lblStatus" textFill="red"/>
+        </VBox>
+    </center>
+</BorderPane>

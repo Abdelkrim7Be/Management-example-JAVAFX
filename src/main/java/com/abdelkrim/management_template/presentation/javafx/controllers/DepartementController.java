@@ -1,7 +1,9 @@
 package com.abdelkrim.management_template.presentation.javafx.controllers;
 
 import com.abdelkrim.management_template.dao.impl.DepartementDaoImpl;
+import com.abdelkrim.management_template.dao.impl.EntrepriseDaoImpl;
 import com.abdelkrim.management_template.presentation.models.Departement;
+import com.abdelkrim.management_template.presentation.models.Entreprise;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,13 +11,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.util.Callback;
 
 import java.util.List;
 
 public class DepartementController {
 
     private final DepartementDaoImpl departementDaoImpl;
+    private final EntrepriseDaoImpl entrepriseDaoImpl;
     private final ObservableList<Departement> departementList = FXCollections.observableArrayList();
+    private final ObservableList<String> entrepriseNames = FXCollections.observableArrayList();
 
     @FXML
     private TableView<Departement> departementTable;
@@ -27,19 +32,20 @@ public class DepartementController {
     private TableColumn<Departement, String> colNom;
 
     @FXML
-    private TableColumn<Departement, Integer> colEntrepriseId;
+    private TableColumn<Departement, String> colEntreprise;
 
     @FXML
     private TextField txtNom;
 
     @FXML
-    private TextField txtEntrepriseId;
+    private ComboBox<String> comboEntreprise;
 
     @FXML
     private Label lblStatus;
 
     public DepartementController() {
         this.departementDaoImpl = new DepartementDaoImpl();  // Using DAO directly
+        this.entrepriseDaoImpl = new EntrepriseDaoImpl();  // Using DAO directly
     }
 
     @FXML
@@ -47,10 +53,48 @@ public class DepartementController {
         // Initialize table columns using getters
         colId.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
         colNom.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
-        colEntrepriseId.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getEntrepriseId()));
+        colEntreprise.setCellValueFactory(cellData -> new SimpleStringProperty(getEntrepriseName(cellData.getValue().getEntrepriseId())));
+
+        // Custom cell factory to center the content
+        Callback<TableColumn<Departement, Integer>, TableCell<Departement, Integer>> cellFactoryInteger = column -> {
+            TableCell<Departement, Integer> cell = new TableCell<Departement, Integer>() {
+                @Override
+                protected void updateItem(Integer item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(item.toString());
+                        setStyle("-fx-alignment: CENTER;");
+                    }
+                }
+            };
+            return cell;
+        };
+
+        Callback<TableColumn<Departement, String>, TableCell<Departement, String>> cellFactoryString = column -> {
+            TableCell<Departement, String> cell = new TableCell<Departement, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(item);
+                        setStyle("-fx-alignment: CENTER;");
+                    }
+                }
+            };
+            return cell;
+        };
+
+        colId.setCellFactory(cellFactoryInteger);
+        colNom.setCellFactory(cellFactoryString);
+        colEntreprise.setCellFactory(cellFactoryString);
 
         // Load data into the table
         loadDepartementData();
+        loadEntrepriseData();
     }
 
     private void loadDepartementData() {
@@ -64,10 +108,41 @@ public class DepartementController {
         }
     }
 
+    private void loadEntrepriseData() {
+        entrepriseNames.clear();
+        try {
+            List<Entreprise> entreprises = entrepriseDaoImpl.findAll();
+            for (Entreprise entreprise : entreprises) {
+                entrepriseNames.add(entreprise.getNom());
+            }
+            comboEntreprise.setItems(entrepriseNames);
+        } catch (Exception e) {
+            lblStatus.setText("Erreur lors de la récupération des entreprises : " + e.getMessage());
+        }
+    }
+
+    private String getEntrepriseName(int entrepriseId) {
+        try {
+            Entreprise entreprise = entrepriseDaoImpl.findById(entrepriseId);
+            return entreprise != null ? entreprise.getNom() : "";
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    private int getEntrepriseId(String entrepriseName) {
+        try {
+            Entreprise entreprise = entrepriseDaoImpl.findByName(entrepriseName);
+            return entreprise != null ? entreprise.getId() : 0;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     @FXML
     private void handleAddDepartement(ActionEvent event) {
         try {
-            int entrepriseId = Integer.parseInt(txtEntrepriseId.getText());  // Convert to int
+            int entrepriseId = getEntrepriseId(comboEntreprise.getValue());  // Get entreprise ID from name
 
             Departement newDepartement = new Departement(
                     0,
@@ -91,7 +166,7 @@ public class DepartementController {
             Departement selectedDepartement = departementTable.getSelectionModel().getSelectedItem();
             if (selectedDepartement != null) {
                 selectedDepartement.setNom(txtNom.getText());
-                selectedDepartement.setEntrepriseId(Integer.parseInt(txtEntrepriseId.getText()));
+                selectedDepartement.setEntrepriseId(getEntrepriseId(comboEntreprise.getValue()));
 
                 departementDaoImpl.update(selectedDepartement); // Direct DAO call
                 lblStatus.setText("Département modifié avec succès !");
@@ -128,12 +203,12 @@ public class DepartementController {
         Departement selectedDepartement = departementTable.getSelectionModel().getSelectedItem();
         if (selectedDepartement != null) {
             txtNom.setText(selectedDepartement.getNom());
-            txtEntrepriseId.setText(String.valueOf(selectedDepartement.getEntrepriseId())); // Display entrepriseId
+            comboEntreprise.setValue(getEntrepriseName(selectedDepartement.getEntrepriseId())); // Display entreprise name
         }
     }
 
     private void clearForm() {
         txtNom.clear();
-        txtEntrepriseId.clear();
+        comboEntreprise.setValue(null);
     }
 }
