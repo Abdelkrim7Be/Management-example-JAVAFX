@@ -8,11 +8,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.util.List;
 
 public class DepartementController {
@@ -205,6 +210,16 @@ public class DepartementController {
             txtNom.setText(selectedDepartement.getNom());
             comboEntreprise.setValue(getEntrepriseName(selectedDepartement.getEntrepriseId())); // Display entreprise name
         }
+    }
+
+    @FXML
+    private void handleBackToDashboard(ActionEvent event) throws IOException {
+        Stage stage = (Stage) departementTable.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/abdelkrim/management_template/views/dashboard.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void clearForm() {

@@ -12,10 +12,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class EntrepriseController {
@@ -224,6 +229,16 @@ public class EntrepriseController {
             loadEmployeData(selectedEntreprise.getId());
             loadDepartementData(selectedEntreprise.getId());
         }
+    }
+
+    @FXML
+    private void handleBackToDashboard(ActionEvent event) throws IOException {
+        Stage stage = (Stage) entrepriseTable.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/abdelkrim/management_template/views/dashboard.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void clearForm() {

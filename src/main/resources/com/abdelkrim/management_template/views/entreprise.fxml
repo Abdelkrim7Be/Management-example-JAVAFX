@@ -116,4 +116,9 @@
             </VBox>
         </HBox>
     </center>
+    <bottom>
+        <HBox alignment="CENTER" spacing="10.0" style="-fx-padding: 10px;">
+            <Button text="Retour au tableau de bord" onAction="#handleBackToDashboard" style="-fx-background-color: black; -fx-text-fill: white;"/>
+        </HBox>
+    </bottom>
 </BorderPane>

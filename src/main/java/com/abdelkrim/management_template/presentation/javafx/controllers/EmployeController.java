@@ -8,11 +8,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -192,6 +197,16 @@ public class EmployeController {
             txtSalaire.setText(selectedEmploye.getSalaire().toString());
             comboDepartement.setValue(getDepartementName(selectedEmploye.getDepartementId())); // Display departement name
         }
+    }
+
+    @FXML
+    private void handleBackToDashboard(ActionEvent event) throws IOException {
+        Stage stage = (Stage) employeTable.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/abdelkrim/management_template/views/dashboard.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void clearForm() {
