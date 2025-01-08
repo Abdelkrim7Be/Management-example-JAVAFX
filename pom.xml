@@ -66,9 +66,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>
-                                com.abdelkrim.management_template/com.abdelkrim.management_template.MainApplication
-                            </mainClass>
+                            <mainClass>com.abdelkrim.management_template.presentation.javafx.MainApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
@@ -80,5 +78,14 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 </project>

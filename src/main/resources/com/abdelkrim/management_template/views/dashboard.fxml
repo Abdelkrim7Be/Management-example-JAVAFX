@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.abdelkrim.management_template.presentation.javafx.controllers.DashboardController"
+            prefHeight="400.0" prefWidth="600.0">
+    <top>
+        <VBox alignment="CENTER" spacing="10.0" style="-fx-padding: 20px 0 0 0;">
+            <Label text="Welcome to the Enterprise Management System" textFill="black" style="-fx-padding: 10px; -fx-margin-top: 20px;">
+                <font>
+                    <Font name="Arial Italic" size="24.0"/>
+                </font>
+            </Label>
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="20.0">
+            <Button fx:id="btnEmployeeDashboard" text="Manage Employee" onAction="#handleEmployeeDashboard" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-pref-width: 200px;"/>
+            <Button fx:id="btnEnterpriseDashboard" text="Manage Enterprise" onAction="#handleEnterpriseDashboard" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-pref-width: 200px;"/>
+            <Button fx:id="btnDepartmentDashboard" text="Manage Department" onAction="#handleDepartmentDashboard" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-pref-width: 200px;"/>
+        </VBox>
+    </center>
+</BorderPane>
