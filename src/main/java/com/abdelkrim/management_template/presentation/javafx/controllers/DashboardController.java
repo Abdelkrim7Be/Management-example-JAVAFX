@@ -4,12 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 
 public class DashboardController {
 
     @FXML
-    private AnchorPane centerPane;
+    private VBox centerPane;
 
     @FXML
     private void handleEmployeeDashboard(ActionEvent event) {
@@ -26,10 +29,11 @@ public class DashboardController {
         loadDashboard("departement.fxml");
     }
 
+
     private void loadDashboard(String fxmlFile) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/abdelkrim/management_template/views/" + fxmlFile));
-            AnchorPane pane = loader.load();
+            BorderPane pane = loader.load(); // Change AnchorPane to BorderPane if the root element in FXML is BorderPane
 
             centerPane.getChildren().setAll(pane);
         } catch (IOException e) {
