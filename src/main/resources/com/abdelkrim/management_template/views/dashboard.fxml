@@ -19,9 +19,9 @@
     </top>
     <center>
         <VBox fx:id="centerPane" alignment="CENTER" spacing="20.0">
-            <Button fx:id="btnEmployeeDashboard" text="Manager les employes" onAction="#handleEmployeeDashboard" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-pref-width: 200px;"/>
             <Button fx:id="btnEnterpriseDashboard" text="Manager les enterprises" onAction="#handleEnterpriseDashboard" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-pref-width: 200px;"/>
             <Button fx:id="btnDepartmentDashboard" text="Manager les departments" onAction="#handleDepartmentDashboard" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-pref-width: 200px;"/>
+            <Button fx:id="btnEmployeeDashboard" text="Manager les employes" onAction="#handleEmployeeDashboard" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-pref-width: 200px;"/>
         </VBox>
     </center>
 </BorderPane>

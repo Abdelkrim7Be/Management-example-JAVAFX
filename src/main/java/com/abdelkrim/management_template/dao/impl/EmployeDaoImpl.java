@@ -119,4 +119,50 @@ public class EmployeDaoImpl implements EmployeDao {
         }
         return null;
     }
+
+    @Override
+    public List<Employe> findByDepartementId(int departementId) {
+        List<Employe> employes = new ArrayList<>();
+        String query = "SELECT * FROM Employe WHERE departement_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, departementId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Employe employe = new Employe(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("poste"),
+                        rs.getBigDecimal("salaire"),
+                        rs.getInt("departement_id")
+                );
+                employes.add(employe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employes;
+    }
+
+    @Override
+    public List<Employe> findByEntrepriseId(int entrepriseId) {
+        List<Employe> employes = new ArrayList<>();
+        String query = "SELECT e.* FROM Employe e JOIN Departement d ON e.departement_id = d.id WHERE d.entreprise_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, entrepriseId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Employe employe = new Employe(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("poste"),
+                        rs.getBigDecimal("salaire"),
+                        rs.getInt("departement_id")
+                );
+                employes.add(employe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employes;
+    }
 }
