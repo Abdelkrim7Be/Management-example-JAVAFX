@@ -5,7 +5,7 @@ import com.abdelkrim.management_template.dao.impl.EntrepriseDaoImpl;
 import com.abdelkrim.management_template.dao.interfaces.EntrepriseDao;
 import com.abdelkrim.management_template.metier.impl.EntrepriseMetierImpl;
 import com.abdelkrim.management_template.metier.interfaces.IEntrepriseMetier;
-import com.abdelkrim.management_template.models.Entreprise;
+import com.abdelkrim.management_template.presentation.models.Entreprise;
 
 import java.util.List;
 

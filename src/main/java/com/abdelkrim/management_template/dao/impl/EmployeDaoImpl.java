@@ -1,11 +1,10 @@
 package com.abdelkrim.management_template.dao.impl;
 
 import com.abdelkrim.management_template.dao.interfaces.EmployeDao;
-import com.abdelkrim.management_template.models.Employe;
+import com.abdelkrim.management_template.presentation.models.Employe;
 import com.abdelkrim.management_template.dao.SingletonConnexionDB;
 
 import java.sql.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 

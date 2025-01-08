@@ -1,7 +1,7 @@
 package com.abdelkrim.management_template.metier.impl;
 
 import com.abdelkrim.management_template.dao.interfaces.EntrepriseDao;
-import com.abdelkrim.management_template.models.Entreprise;
+import com.abdelkrim.management_template.presentation.models.Entreprise;
 import com.abdelkrim.management_template.metier.interfaces.IEntrepriseMetier;
 
 import java.util.List;

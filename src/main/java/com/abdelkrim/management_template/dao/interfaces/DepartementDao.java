@@ -1,6 +1,6 @@
 package com.abdelkrim.management_template.dao.interfaces;
 
-import com.abdelkrim.management_template.models.Departement;
+import com.abdelkrim.management_template.presentation.models.Departement;
 import java.util.List;
 
 public interface DepartementDao extends Dao<Departement> {

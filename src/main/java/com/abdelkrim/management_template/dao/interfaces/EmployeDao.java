@@ -1,7 +1,6 @@
 package com.abdelkrim.management_template.dao.interfaces;
 
-import com.abdelkrim.management_template.models.Employe;
-import java.util.List;
+import com.abdelkrim.management_template.presentation.models.Employe;
 
 public interface EmployeDao extends Dao<Employe> {
     //L'EntrepriseDao étend désormais Dao<Entreprise>, ce qui lui permet d'hériter automatiquement

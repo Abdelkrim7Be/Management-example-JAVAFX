@@ -1,7 +1,7 @@
 package com.abdelkrim.management_template.dao.impl;
 
 import com.abdelkrim.management_template.dao.interfaces.EntrepriseDao;
-import com.abdelkrim.management_template.models.Entreprise;
+import com.abdelkrim.management_template.presentation.models.Entreprise;
 import com.abdelkrim.management_template.dao.SingletonConnexionDB;
 
 import java.sql.*;

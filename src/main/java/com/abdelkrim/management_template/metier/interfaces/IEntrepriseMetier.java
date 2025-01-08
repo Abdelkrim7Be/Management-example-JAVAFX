@@ -1,6 +1,6 @@
 package com.abdelkrim.management_template.metier.interfaces;
 
-import com.abdelkrim.management_template.models.Entreprise;
+import com.abdelkrim.management_template.presentation.models.Entreprise;
 
 import java.util.List;
 
