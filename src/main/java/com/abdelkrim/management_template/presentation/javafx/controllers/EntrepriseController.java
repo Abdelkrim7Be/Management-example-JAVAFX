@@ -55,7 +55,6 @@ public class EntrepriseController {
     private Label lblStatus;
 
     public EntrepriseController() {
-        // Instantiate the DAO implementation (make sure EntrepriseDaoImpl is properly implemented)
         EntrepriseDaoImpl entrepriseDaoImpl = new EntrepriseDaoImpl();
         this.entrepriseMetier = new EntrepriseMetierImpl(entrepriseDaoImpl); // Pass DAO implementation to Metier
     }
@@ -63,14 +62,12 @@ public class EntrepriseController {
 
     @FXML
     public void initialize() {
-        // Initialize table columns using getters
         colId.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
         colNom.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
         colAdresse.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse()));
         colTelephone.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelephone()));
         colEmail.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
 
-        // Load data into the table
         loadEntrepriseData();
     }
 
